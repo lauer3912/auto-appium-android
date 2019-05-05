@@ -113,7 +113,7 @@ class VMJob(object):
             # 后台进程正在运行中，关闭掉
             if self.get_back_proc_is_running():
                 logger.info('Found back_proc is running, must check stop it ... vmid={}'.format(self.vmid))
-                if (Utils.get_now_time() - self.start_time) < 10 * 1000:
+                if (Utils.get_now_time() - self.start_time) < 60 * 1000:
                     return  # 如果当前时间和最开始的启动时间只是差10秒钟，那么直接返回，不关闭后台进程
                 self.stop_all_back_procs()
 
@@ -166,7 +166,7 @@ class VMJob(object):
                 await sleep(3)
                 logger.info('call adb_devices again ...')
                 await vmsH.adb_devices()
-                await sleep(5)
+                await sleep(30)
                 logger.info("call create_sub_process")
                 await self.create_sub_process()
 
