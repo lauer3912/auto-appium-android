@@ -400,19 +400,19 @@ def get_best_max_run_time():
     cur_time_hour = int(cur_time.tm_hour)
 
     # 凌晨的情况，对应美国区的下午
-    if cur_time_hour in range(0, 8):
-        return random.randint(15, 30) * 60 * 1000
+    if cur_time_hour in range(0, 11):
+        return random.randint(10, 20) * 60 * 1000
 
     # 上午的情况，对应为美国区的晚上
-    if cur_time_hour in range(9, 17):
-        return random.randint(10, 25) * 60 * 1000
+    elif cur_time_hour in range(11, 17):
+        return random.randint(7, 15) * 60 * 1000
 
     # 下午晚上可以点击少量广告的情况下，对应美国区的上午到中午时段
-    if cur_time_hour in range(18, 25):
-        return random.randint(15, 30) * 60 * 1000
+    elif cur_time_hour in range(17, 25):
+        return random.randint(12, 22) * 60 * 1000
 
     # 普通情况下
-    return random.randint(30, 48) * 60 * 1000
+    return random.randint(5, 15) * 60 * 1000
 
 
 def find_in_record_mac_address_list(config_mac_address, had_record_mac_address_list):
