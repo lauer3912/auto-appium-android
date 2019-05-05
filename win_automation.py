@@ -345,7 +345,7 @@ async def producer():
             await sleep(1*60)  # 每隔60秒再发布，让系统稳定下来
 
         # 需要系统等待x秒，再发送，不能太快
-        await sleep(10*60)  # 10分钟轮询一下
+        await sleep(len(app_vmjob_list)*60)  # 根据vm数量决定更新轮询时间间隔
 
 
 def exit_callback():
