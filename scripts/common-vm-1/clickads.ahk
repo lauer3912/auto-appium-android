@@ -1,7 +1,7 @@
 CoordMode, Mouse
 
-ads_X_min := 20
-ads_X_max := 520
+ads_X_min := 610
+ads_X_max := 1100
 
 
 ClickAds(x_min:=0, x_max:=0, y_min:=0, y_max:=0)
@@ -33,7 +33,21 @@ MoveMouse(max_times:=20, x_min:=0, x_max:=0, y_min:=0, y_max:=0)
     }
 }
 
+
 Loop, 3 {
+    ; Click the top ads
+    ClickAds(ads_X_min, ads_X_max, 172, 215)
+    MoveMouse(10, ads_X_min, ads_X_max, 172, 850)
+
+    ; Click the mid ads
+    ClickAds(ads_X_min, ads_X_max, 534, 720)
+    MoveMouse(10, ads_X_min, ads_X_max, 172, 850)
+
+    ; Click the bottom ads
+    ClickAds(ads_X_min, ads_X_max, 800, 850)
+    MoveMouse(10, ads_X_min, ads_X_max, 172, 850)
+
+
     Random, best_index, 1, 7
     Sleep, 2*1000
     if (%best_index% >= 5) {
@@ -64,20 +78,6 @@ Loop, 3 {
     }
 }
 
-; Click the top ads
-ClickAds(ads_X_min, ads_X_max, 172, 215)
-MoveMouse(10, ads_X_min, ads_X_max, 172, 850)
-
-; Click the mid ads
-ClickAds(ads_X_min, ads_X_max, 534, 720)
-MoveMouse(10, ads_X_min, ads_X_max, 172, 850)
-
-; Click the bottom ads
-ClickAds(ads_X_min, ads_X_max, 800, 850)
-MoveMouse(10, ads_X_min, ads_X_max, 172, 850)
-
-
 
 ; Exit
 Exit
-
