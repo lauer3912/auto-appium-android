@@ -149,7 +149,7 @@ class VMJob(object):
             await vmsH.start_vm(self.vmid)
 
             tmp_vm_start_time = Utils.get_now_time()
-            tmp_vm_max_start_use_time = 300*1000  # 最大的运行检测时间
+            tmp_vm_max_start_use_time = 300 * 1000  # 最大的运行检测时间
             while Utils.get_now_time() - tmp_vm_start_time <= tmp_vm_max_start_use_time:
                 await sleep(2)
                 is_running = await self.is_vm_running()
@@ -160,6 +160,7 @@ class VMJob(object):
             is_running = await self.is_vm_running()
             if not is_running:
                 self.startingVM = False
+                await self.stop_adb_process()
                 await self.stop_back_handler(force=True)
             else:
                 await sleep(3)
@@ -207,6 +208,29 @@ class VMJob(object):
             logger.info('Close VM failed ... vmid={}'.format(self.vmid))
         else:
             self.start_time = Utils.get_now_time() * 10  # 表示不会被重新启动
+
+    async def stop_adb_process(self):
+        """
+        关闭adb.exe 进程
+        :return:
+        """
+        adb_process_name = 'adb.exe'
+        all_adb_process_ids = []
+        try:
+            # 获取所有的进程id
+            for proc in psutil.process_iter(attrs=['pid', 'name']):
+                proc_id = proc.info['pid']
+                proc_name = proc.info['name']
+                if proc_name == adb_process_name:
+                    all_adb_process_ids.append(proc_id)
+            # 匹配后，执行关闭adb.exe
+            for one_proc_id in all_adb_process_ids:
+                try:
+                    psutil.Process(one_proc_id).terminate()
+                except Exception:
+                    logger.exception('Error:')
+        except Exception:
+            logger.exception('Error:')
 
     def free(self):
         self.stop_all_back_procs()
@@ -463,7 +487,6 @@ async def main():
         ptask = await g.spawn(producer)
         await ptask.join()
         await g.cancel_remaining()
-
 
 
 if __name__ == '__main__':

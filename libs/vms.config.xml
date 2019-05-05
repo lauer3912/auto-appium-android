@@ -45,9 +45,6 @@
                 startCommand="python run.py --s http://127.0.0.1:4727/wd/hub --d 127.0.0.1:21533 --a common-vm-2 --v 3 "/>
 
     </machine>
-    <machine name="Ian Server PC" macAddress="">
-
-    </machine>
     <machine name="Lucy PC" macAddress="70:5a:0f:40:2a:c6">
         <config enable="true" vmname="US" vmid="0"
                 win_x="18" win_y="20"
@@ -80,7 +77,7 @@
                 win_scaling_percent2="63.703704"
                 resolution_width="810" resolution_height="1440"
 
-                enable_ads="false"
+                enable_ads="true"
                 appiumCommand="appium -p 4723"
                 startCommand="python run.py --s http://127.0.0.1:4723/wd/hub --d 127.0.0.1:21533 --a common-vm-0 --v 3"/>
         <config enable="true" vmname="Web-04-21543" vmid="4"
@@ -88,7 +85,7 @@
                 win_scaling_percent2="63.703704"
                 resolution_width="810" resolution_height="1440"
 
-                enable_ads="false"
+                enable_ads="true"
                 appiumCommand="appium -p 4725"
                 startCommand="python run.py --s http://127.0.0.1:4725/wd/hub --d 127.0.0.1:21543 --a common-vm-1 --v 4"/>
     </machine>
