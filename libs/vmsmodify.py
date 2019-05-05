@@ -22,7 +22,8 @@ class VMSModifyHandler(object):
 
         for maybe_path in [
             'C:\Program Files\Microvirt\MEmu\memuc.exe',
-            'D:\VMSMicrovirt\MEmu\memuc.exe'
+            'D:\VMSMicrovirt\MEmu\memuc.exe',
+            'D:\Microvirt\MEmu\memuc.exe'
         ]:
             if os.path.exists(maybe_path):
                 self.vmcmd = maybe_path
