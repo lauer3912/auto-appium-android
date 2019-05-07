@@ -324,7 +324,8 @@ def start_vpn():
 
 
 def auto_click_ads():
-    return common_process_call("Trying click ads...", ['AutoHotkey', 'clickads.ahk'])
+    return  # 暂时屏蔽点击广告
+    # return common_process_call("Trying click ads...", ['AutoHotkey', 'clickads.ahk'])
 
 
 def auto_close_tab_page():
@@ -443,7 +444,7 @@ def starup(want_open_url, app_args):
         cfg_enable_web_wait = 1
         if cfg_enable_web_wait == 1:
             logger.info("让网页自己先安静一下...")
-            min_sleep_secs = random.randint(5, 30)
+            min_sleep_secs = random.randint(30, 90)
             time.sleep(min_sleep_secs)
 
         # 判断是否为快速浏览模式
@@ -459,7 +460,7 @@ def starup(want_open_url, app_args):
                 auto_click_ads()
 
             start_auto_scroll_up_or_down()
-            time.sleep(random.randint(5, 25))
+            time.sleep(random.randint(25, 60))
 
         # 非快速浏览模式，可以尝试点击广告
         else:
